@@ -1,0 +1,27 @@
+﻿@page
+@using System.Data.SqlClient;
+@model TodoSoft.Pages.Todo.deleteModel
+@{
+    string id = Request.Query["id"];
+    string connectionString = "Data Source=MAG\\SQLEXPRESS;Initial Catalog=TuesdayDB;Integrated Security=True";
+    try
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            string query = "Delete from todos where id = @id";
+
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+                Response.Redirect("../../todo");
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+}

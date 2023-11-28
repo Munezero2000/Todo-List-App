@@ -1,0 +1,17 @@
+﻿@page
+@model TodoSoft.Pages.Todo.editModel
+@{
+}
+<h1>Update todo Information</h1>
+<form method="post">
+    <div class="form-group mb-3">
+        <label for="exampleInputEmail1">Todo</label>
+        <input type="text" name="title" class="form-control" id="exampleInputEmail1" value="@Model.todo.title">
+    </div>
+    <div class="form-group mb-3">
+        <label for="exampleInputPassword1">Description</label>
+        <input type="text" name="description" class="form-control" id="exampleInputPassword1" value="@Model.todo.description">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -1,0 +1,49 @@
+﻿@page
+@model TodoSoft.Pages.Todo.IndexModel
+@{
+}
+
+<h1>To do List Application</h1>
+@if (Model.successMessage.Length > 0)
+{
+    <div class="alert alert-success" role="alert">
+        @Model.successMessage
+    </div>
+}
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-danger alert-dismissible close" role="alert">
+        @Model.errorMessage
+    </div>
+}
+<form method="post">
+    <div class="form-group mb-3">
+        <label for="exampleInputEmail1">Todo</label>
+        <input type="text"  name="title"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="title">
+      </div>
+    <div class="form-group mb-3">
+        <label for="exampleInputPassword1">Description</label>
+        <input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Description">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div class="container mt-3">
+    <div class="row">
+        @foreach (var todo in Model.todoList)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@todo.title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@todo.updatedAt.ToString("yyyy-MM-dd HH:mm:ss")</h6>
+                        <p class="card-text">@todo.description</p>
+                        <a href="../todo/edit/?id=@todo.Id"  class="card-link">Edit</a>
+                        <a href=".../todo/delete/?id=@todo.Id" class="card-link">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
